@@ -1,0 +1,23 @@
+[Unit]
+Description=Python Weather Station Service
+# Wartet, bis das Netzwerk und die Datenbank bereit sind
+After=network.target mysql.service
+
+[Service]
+# Dein Linux-Benutzername
+User=admin-server
+# Der absolute Pfad zu deinem Projektordner
+WorkingDirectory=/home/admin-server/projects/weather_station
+# Pfad zum Python-Interpreter IN DEINEM .venv und die main.py
+ExecStart=/home/admin-server/projects/weather_station/.venv/bin/python3 main.py
+# Wichtig: Damit die Prints sofort im Log erscheinen
+Environment=PYTHONUNBUFFERED=1
+# Automatischer Neustart bei Fehlern
+Restart=always
+RestartSec=10
+
+StandardOutput=append:/home/admin-server/projects/weather_station/logs/weather.log
+StandardError=append:/home/admin-server/projects/weather_station/logs/weather_error.log
+
+[Install]
+WantedBy=multi-user.target
