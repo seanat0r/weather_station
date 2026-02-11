@@ -14,9 +14,7 @@
 
 ### Structure
 
-#### Microcontroller
-
-### Microcontrollers
+#### Microcontrollers
 
 The project uses two microcontrollers to collect indoor weather data (temperature, humidity, and pressure). An Arduino Nano acts as a remote sensor node, sending data wirelessly to a WeMos D1 Mini (the gateway). The WeMos checks signal integrity and applies a weighting algorithm to determine data accuracy before averaging. The final data is served in JSON format via a static IP address or mDNS (`wemosd1_weatherstation.local`).
 
