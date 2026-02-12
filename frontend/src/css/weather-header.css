@@ -35,4 +35,53 @@
     flex-direction: column;
     gap: 1.5rem;
     text-align: right;
+    margin-left: 1rem;
+}
+.stat-group {
+    background: rgba(255, 255, 255, 0.03); /* Ganz dezenter Hintergrund */
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 180px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 12px;
+}
+
+.temp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.loc-icon {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+}
+
+.temp-minmax {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.temp-up { color: #ffabac; }   /* Ganz sanftes Rot für Max */
+.temp-down { color: #acd9ff; } /* Ganz sanftes Blau für Min */
+
+.temp-separator {
+    opacity: 0.2;
+    font-weight: 200;
+}
+
+.stat-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 0;
 }

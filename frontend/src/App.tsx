@@ -1,6 +1,6 @@
 import './css/App.css'
-import Board from './board.tsx'
-import WeatherHeader from './title.tsx'
+import Board from './components/board.tsx'
+import WeatherHeader from './components/title.tsx'
 
 export default function WeatherDashboard() {
   
