@@ -4599,3 +4599,28 @@ Fetching outdoor weather data
 proccess outdoor weather data
 -> [DB INSERT] Record saved
 Current weather data from API: 8.2 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 21.69 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 21.95 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 21.95 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 21.88 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 21.81 °C
