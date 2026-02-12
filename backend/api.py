@@ -17,6 +17,7 @@ def checkData(data):
 def changeToJson(data):
     return jsonify(data)
 
+# one entry from DB with indoor and outdoor (without null)
 @app.route('/api/weather/current', methods=['GET'])
 def current_weather():
     data = db.get_latest_full_status()
@@ -25,6 +26,7 @@ def current_weather():
        return changeToJson(checkValue) 
     return jsonify({"error": "No data found"}), 404
 
+# last 24 h entry from DB from indoor and outdoor (with null)
 @app.route('/api/weather/history_24', methods=['GET'])
 def weather_24_history():
     data = db.get_history(hours=24)
@@ -33,6 +35,7 @@ def weather_24_history():
        return changeToJson(checkValue) 
     return jsonify({"error": "No data found"}), 404
 
+# last 1 month entry from DB from indoor and outdoor (with null)
 @app.route('/api/weather/history_1_month', methods=['GET'])
 def weather_1_month_history():
     data = db.get_history(hours=720)
@@ -41,6 +44,7 @@ def weather_1_month_history():
         return changeToJson(checkValue)
     return jsonify({"error": "No data found"}), 404
 
+# last 1 week entry from DB from indoor and outdoor (with null)
 @app.route('/api/weather/history_1_week', methods=['GET'])
 def weather_1_week_history():
     data = db.get_history(hours=168)
@@ -49,6 +53,7 @@ def weather_1_week_history():
         return changeToJson(checkValue)
     return jsonify({"error": "No data found"}), 404
 
+# max and min temp from indoor and outdoor with max wind and total rain
 @app.route('/api/weather/daily', methods=['GET'])
 def daily_max_min():
     data = db.get_daily_max_min()
@@ -57,6 +62,7 @@ def daily_max_min():
         return changeToJson(checkValue)
     return jsonify({"error": "No data found"}), 404
 
+# total rain
 @app.route('/api/weather/rain', methods=['GET'])
 def rain():
     data = db.get_rain()
@@ -65,6 +71,7 @@ def rain():
         return changeToJson(checkValue)
     return jsonify({"error": "No data found"}), 404
 
+# current press and the last from 3h ago press
 @app.route('/api/weather/forecast')
 def forecast():
     data = db.get_forecast()

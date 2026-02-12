@@ -1,0 +1,15 @@
+/* In App.css oder index.css */
+body {
+    margin: 0;
+    padding: 0;
+    /* Ein schöner dunkler Verlauf (Abendhimmel) */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.app-container {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
