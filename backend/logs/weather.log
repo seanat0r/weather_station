@@ -4687,3 +4687,22 @@ Current weather data: 22.15 °C
 Fetching weather data
 -> [DB INSERT] Record saved
 Current weather data: 22.07 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 22.02 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 22.01 °C
+Fetching outdoor weather data
+proccess outdoor weather data
+-> [DB INSERT] Record saved
+Current weather data from API: 7.9 °C
+
+--- new cylce ---
+Fetching weather data
+-> [DB INSERT] Record saved
+Current weather data: 21.94 °C
