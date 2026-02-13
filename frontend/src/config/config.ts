@@ -7,7 +7,8 @@ export const icons = {
   snow: "❄️",
   storm: "⛈️",
   home: "🏠",
-  outdoor: "📍"
+  outdoor: "📍",
+  loading: "❓",
 }
 
 export const treshholdsWeatherStatus = {

@@ -7,7 +7,7 @@ interface IconPacket {
 }
 
 
-export function getWeatherStatus(weatherObj: CurrentWeather): IconPacket {
+export function getWeatherStatus(weatherObj: (CurrentWeather)): IconPacket {
     if (weatherObj.rain > tresh.MIN_RAIN && weatherObj.wind_speed > tresh.MIN_STORM_WIND) {
         return {icon: icons.storm, label: "Storm"};
     } else if (weatherObj.rain > tresh.MIN_RAIN && weatherObj.outdoor_temp <= tresh.MIN_SNOW_TEMP) {
