@@ -12,7 +12,24 @@ export interface CurrentWeather {
 }
 export type WeatherHistory = CurrentWeather[];
 
-export async function getCurrentData() {
+export interface dailyWeather {
+  max_temp_in: number,
+  max_temp_out: number,
+  max_wind: number,
+  min_temp_in: number,
+  min_temp_out: number,
+  total_rain: number
+}
+
+export type TotalRain = number;
+
+export interface ForecastItem {
+    outdoor_press: number;
+}
+
+export type Forecast = ForecastItem[];
+
+export async function getCurrentData(): Promise<CurrentWeather | null> {
     try {
         const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/current`);
         if (!response.ok) {
@@ -20,18 +37,7 @@ export async function getCurrentData() {
             return null;
         }
         const data = await response.json();
-        return {
-            timestamp: data.timestamp,
-            indoor_temp: data.indoor_temp,
-            indoor_hum: data.indoor_hum,
-            indoor_press: data.indoor_press,
-            outdoor_temp: data.outdoor_temp,
-            outdoor_hum: data.outdoor_hum,
-            outdoor_press: data.outdoor_press,
-            rain: data.rain,
-            wind_speed: data.wind_speed
-    };
-        
+        return data;
     } catch (err) {
         console.warn("Network error: " + err)
         return null;
@@ -39,11 +45,14 @@ export async function getCurrentData() {
 }
 
 /**
-     * Get Collection of Weather data from the Backend
-     * * @param "Input valid: '24' , '1M' , '1W'"
+     * Get Collection of Weather data from the Backend.
+     * 24 -> last 24h,
+     * 1W -> last 1 Week,
+     * 1M -> last 1 Month
+     * @param "Input valid: '24' , '1M' , '1W'"
      * @returns a promise with a list of weather data
      */
-export async function getWeatherHistory(time:string) {
+export async function getWeatherHistory(time:string): Promise<WeatherHistory | null> {
     const validInput = ['24', '1M', '1W'];
     let urlEndPoint = "";
     if (!validInput.includes(time)) {
@@ -78,5 +87,52 @@ export async function getWeatherHistory(time:string) {
         console.warn("Network error: " + err)
         return null;
     }
+}
 
+export async function getDailyWeather(): Promise<dailyWeather | null> {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/daily`);
+        if (!response.ok) {
+            console.warn("HTTP Error: " + response.status);
+            return null;
+        }
+        const data = await response.json();
+        return  data;
+        
+    } catch (err) {
+        console.warn("Network error: " + err)
+        return null;
+    }
+}
+
+export async function getTotalRain(): Promise<TotalRain | null> {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/rain`);
+        if (!response.ok) {
+            console.warn("HTTP Error: " + response.status);
+            return null;
+        }
+        const data = await response.json();
+        return  data;
+        
+    } catch (err) {
+        console.warn("Network error: " + err)
+        return null;
+    }
+}
+
+export async function getForecast(): Promise<Forecast | null> {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/forecast`);
+        if (!response.ok) {
+            console.warn("HTTP Error: " + response.status);
+            return null;
+        }
+        const data = await response.json();
+        return  data;
+        
+    } catch (err) {
+        console.warn("Network error: " + err)
+        return null;
+    }
 }
