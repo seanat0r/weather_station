@@ -1,11 +1,34 @@
 import './../css/weather-header.css'
+import { type CurrentWeather, getCurrentData } from './../services/weatherService.ts'
+import { icons } from './../config/config'
+import { useEffect, useState } from 'react'
+
+function HeroHelperDisplay({ value }: { value: null | undefined | number}) {
+    if (value === undefined || value === null) {
+        return <span className='temp-value'>...</span>
+    } else {
+        return <span className='temp-value'>{value}°C</span>
+    }
+}
 
 function HeroSection() {
+    const [currentWeather, setCurrentWeather] = useState<CurrentWeather | null>(null);
+
+    useEffect(() => {
+        const fetchWeather = async () => {
+        const data = await getCurrentData();
+        setCurrentWeather(data);
+    };
+
+        fetchWeather();
+    }, []);
+    
+
     return (
          <div className="hero-section">
                 <div className="main-temp">
-                    <span className="temp-value">8°C</span>
-                    <p className="location-label">📍 Erlinsbach</p>
+                    <HeroHelperDisplay value={currentWeather?.outdoor_temp} />
+                    <p className="location-label">{icons.outdoor} Erlinsbach</p>
                 </div>
                 
                 <div className="weather-status">
@@ -14,8 +37,8 @@ function HeroSection() {
                 </div>
 
                 <div className="main-temp indoor">
-                    <span className="temp-value">22°C</span>
-                    <p className="location-label">🏠 Indoor</p>
+                    <HeroHelperDisplay value={currentWeather?.indoor_temp} />
+                    <p className="location-label">{icons.home} Indoor</p>
                 </div>
             </div>
     )
