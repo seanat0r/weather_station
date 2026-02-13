@@ -2,6 +2,7 @@ import './../css/weather-header.css'
 import { type CurrentWeather, getCurrentData } from './../services/weatherService.ts'
 import { icons } from './../config/config'
 import { useEffect, useState } from 'react'
+import { getWeatherStatus } from './../services/calculateOverallWeather.ts'
 
 function HeroHelperDisplay({ value }: { value: null | undefined | number}) {
     if (value === undefined || value === null) {
@@ -13,6 +14,9 @@ function HeroHelperDisplay({ value }: { value: null | undefined | number}) {
 
 function HeroSection() {
     const [currentWeather, setCurrentWeather] = useState<CurrentWeather | null>(null);
+    const iconPacket = currentWeather ? getWeatherStatus(currentWeather) : null;
+    const icon = iconPacket?.icon || "❓";
+    const label = iconPacket?.label || "Lade...";
 
     useEffect(() => {
         const fetchWeather = async () => {
@@ -32,8 +36,8 @@ function HeroSection() {
                 </div>
                 
                 <div className="weather-status">
-                    <span className="status-icon">🌧️</span>
-                    <p className="status-text">Rain</p>
+                    <span className="status-icon">{icon}</span>
+                    <p className="status-text">{label}</p>
                 </div>
 
                 <div className="main-temp indoor">
