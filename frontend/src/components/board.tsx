@@ -15,6 +15,7 @@ function Tile() {
     return (
         <>
             <div className="tile">
+              {/* Graphen durch mappen */}
                 <Graph /> {/* 24 h temp */}
                 <Graph /> {/* 07 d temp */}
                 <Graph /> {/* 01 M temp */}
