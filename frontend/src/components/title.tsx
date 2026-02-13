@@ -121,7 +121,6 @@ export default function WeatherHeader() {
             <HeroSection />
 
             <div className='stats-grid'>
-                {/* Box 1: Temperaturen (Klassisch Indoor/Outdoor) */}
                 <StatRow 
                     title="Temperature Today"
                     iconTop={icons.home}
@@ -133,8 +132,6 @@ export default function WeatherHeader() {
                     minBottom={dailyWeather?.min_temp_out}
                     unitBottom="°C"
                 />
-
-                {/* Box 2: Wind & Regen kombiniert */}
                 <StatRow 
                     title="Wind & Rain"
                     iconTop={icons.windy}

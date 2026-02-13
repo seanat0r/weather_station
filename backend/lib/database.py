@@ -141,7 +141,7 @@ class DatabaseManager:
                 MAX(outdoor_temp) AS max_temp_out, 
                 MIN(outdoor_temp) AS min_temp_out,
                 MAX(wind_speed) AS max_wind,
-                SUM(rain) AS total_rain
+                ROUND(SUM(rain), 2) AS total_rain
             FROM v_weather_master 
             WHERE timestamp >= NOW() - INTERVAL 24 HOUR
                     """
