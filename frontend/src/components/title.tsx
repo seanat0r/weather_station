@@ -45,7 +45,7 @@ export default function WeatherHeader() {
                 <div className="stat-group">
                     <p className="stat-label">Conditions</p>
                     <div className="temp-row">
-                        <span className="loc-icon">🌬️</span>
+                        <span className="loc-icon">💨</span>
                         <div className="temp-minmax">
                             <span className="wind-value">23 <small>km/h</small></span>
                         </div>
