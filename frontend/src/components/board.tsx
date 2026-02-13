@@ -24,8 +24,8 @@ function Tile() {
                 <Graph /> {/* 24 h press */}
                 <Graph /> {/* 07 d press*/}
                 <Graph /> {/* 01 M press*/}
-                <TotalRain/>
-                <Forecast />
+                <MetricBox />
+                <MetricBox />
             </div>
         </>
     )
@@ -73,21 +73,7 @@ function Graph() {
     </div>
     )
 }
-
-function TotalRain() {
-  return (
-    <>
-      <h3>Total rain past 24h</h3>
-      <div>
-        <span>🌧️</span>
-        <p>Total rain in: <br/></p>
-        <p>25 l</p>
-      </div>
-    </>
-  )
-}
-
-function Forecast() {
+function MetricBox() {
   return (
     <>
       <h3>Forecast</h3>
