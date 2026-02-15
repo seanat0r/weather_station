@@ -1,3 +1,12 @@
+import { type WeatherHistory } from './../services/weatherService'
+
+export interface GraphData {
+  title: string,
+  unit: string,
+  data: WeatherHistory,
+  dataKey: string[]
+}
+
 export const icons = {
   sun: "☀️",
   rain: "🌧️",
