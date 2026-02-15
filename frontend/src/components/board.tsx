@@ -1,8 +1,27 @@
+import { useEffect, useState } from "react"
 import Graph from "./graph"
-
-
+import { type WeatherHistory, getWeatherHistory } from './../services/weatherService'
+import { type GraphData, icons } from "./../config/config"
 
 function Tile() {
+  const [dailyData, setDailyData] = useState<WeatherHistory | null>(null);
+  const [weeklyData, setWeeklyData] = useState<WeatherHistory | null>(null);
+  const [monthlyData, setMonthlyData] = useState<WeatherHistory | null>(null); 
+  const task = [{time: '24', setter: 'setDailyData'}, {time: '1W', setter: 'setWeeklyData'}, {time: '1M', setter: 'setMonthlyData'}];
+
+  useEffect ((time:string, setter) => {
+    const fetchWeather = async () => {
+      const data = await getWeatherHistory(time)
+      setter(data);
+    }
+    fetchWeather(time, setter);
+  })
+
+  function mappingApiCalls() {
+
+  }
+  
+  }
     return (
         <>
             <div className="tile">
