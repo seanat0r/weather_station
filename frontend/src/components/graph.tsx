@@ -3,7 +3,7 @@ import { type CurrentWeather, type WeatherHistory } from './../services/weatherS
 import '../css/weather-chart.css'
 import { useMemo } from 'react';
 
-export default function Graph({ data, metric }: { data: WeatherHistory | null, metric: any }) {
+export default function Graph({ data, metric, timerange }: { data: WeatherHistory | null, metric: any, timerange: string }) {
   const formattedData = useMemo(() => {
     if (!data) return [];
 
@@ -20,8 +20,8 @@ export default function Graph({ data, metric }: { data: WeatherHistory | null, m
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title">{metric.title} in {metric.unit}</h3>
-      <div style={{ width: '100%', height: 300 }}>
+      <h3 className="chart-title">{metric.title} in {metric.unit} ({timerange})</h3>
+      <div style={{ width: '100%', height: '400px' }}>
         <ResponsiveContainer>
           <AreaChart data={formattedData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
             <defs>
@@ -40,17 +40,24 @@ export default function Graph({ data, metric }: { data: WeatherHistory | null, m
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
             <XAxis
               dataKey="time"
-              axisLine={false}
-              tickLine={false}
+              axisLine={true}
+              tickLine={true}
+              tickFormatter={(timeStr) => {
+                if (!timeStr) return ""
+                const date = new Date(timeStr);
+                return isNaN(date.getTime())
+                  ? ""
+                  : date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+              }}
               tick={{ fill: 'white', opacity: 0.5, fontSize: 12 }}
             />
             <YAxis
-              hide={true}
+              hide={false}
               domain={['auto', 'auto']}
             />
             <Tooltip
               contentStyle={{ backgroundColor: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '10px', color: 'white' }}
-              itemStyle={{ color: '#acd9ff' }}
+              itemStyle={{ color: '#fff' }}
               formatter={(value: number | undefined) => {
                 if (value === undefined) return `N/A`;
                 return `${value} ${metric.unit}`;

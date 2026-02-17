@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import Graph from "./graph"
-import { type WeatherHistory, getWeatherHistory } from './../services/weatherService'
-import { type GraphData, icons } from "./../config/config"
+import { type CurrentWeather, type WeatherHistory, getWeatherHistory } from './../services/weatherService'
+import { icons, METRICS, TIMERANGE } from "./../config/config"
 
 function Tile() {
   const [dailyData, setDailyData] = useState<WeatherHistory | null>(null);
@@ -11,13 +11,8 @@ function Tile() {
   { time: '1W', setter: setWeeklyData, state: weeklyData },
   { time: '1M', setter: setMonthlyData, state: monthlyData }
   ];
-  const METRICS = [
-    { title: 'temperature', unit: 'ºC', keys: ['indoor_temp', 'outdoor_temp'], colors: ["#acd9ff","#ffb347" ] },
-    { title: 'humidity', unit: '%', keys: ['indoor_hum', 'outdoor_hum'], colors: ["#acd9ff","#ffb347" ] },
-    { title: 'pressure', unit: 'hPa', keys: ['indoor_press', 'outdoor_press'], colors: ["#acd9ff","#ffb347" ] },
-    { title: 'rain', unit: 'mm', keys: ['rain'], colors: ["#acd9ff","#ffb347" ]},
-    { tilte: 'windspeed', unit: 'km/h', keys: ['wind_speed'], colors: ["#acd9ff","#ffb347" ] }
-  ];
+  
+  
 
   useEffect(() => {
     const fetchAllWeather = async () => {
@@ -29,20 +24,19 @@ function Tile() {
     fetchAllWeather()
   }, [])
 
-
   return (
     <>
       <div className="tile">
-        {/* Graphen durch mappen */}
-        <Graph data={dailyData} metric={METRICS[0]} /> {/* 24 h temp */}
-        <Graph data={weeklyData} metric={METRICS[0]} /> {/* 07 d temp */}
-        <Graph data={monthlyData} metric={METRICS[0]} /> {/* 01 M temp */}
-        <Graph data={dailyData} metric={METRICS[1]} /> {/* 24 h hum */}
-        <Graph data={weeklyData} metric={METRICS[1]} /> {/* 07 d hum */}
-        <Graph data={monthlyData} metric={METRICS[1]} /> {/* 01 M hum */}
-        <Graph data={dailyData} metric={METRICS[2]} /> {/* 24 h press */}
-        <Graph data={weeklyData} metric={METRICS[2]} /> {/* 07 d press*/}
-        <Graph data={monthlyData} metric={METRICS[2]} /> {/* 01 M press*/}
+        {METRICS.map((metric: any) => (
+          task.map((item: any, index: number) => (
+            <Graph
+             key={`${metric.title}-${item.time}`}
+             data={item.state}
+             metric={metric}
+             timerange={TIMERANGE[index].time}
+             />
+          ))
+        ))}
         <MetricBox />
         <MetricBox />
       </div>
