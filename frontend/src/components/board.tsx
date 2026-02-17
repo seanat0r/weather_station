@@ -12,11 +12,11 @@ function Tile() {
   { time: '1M', setter: setMonthlyData, state: monthlyData }
   ];
   const METRICS = [
-    { title: 'temperature', unit: 'ºC', keys: ['indoor_temp', 'outdoor_temp'] },
-    { title: 'humidity', unit: '%', keys: ['indoor_hum', 'outdoor_hum'] },
-    { title: 'pressure', unit: 'hPa', keys: ['indoor_press', 'outdoor_press'] },
-    { title: 'rain', unit: 'mm', keys: ['rain'] },
-    { tilte: 'windspeed', unit: 'km/h', keys: ['wind_speed'] }
+    { title: 'temperature', unit: 'ºC', keys: ['indoor_temp', 'outdoor_temp'], colors: ["#acd9ff","#ffb347" ] },
+    { title: 'humidity', unit: '%', keys: ['indoor_hum', 'outdoor_hum'], colors: ["#acd9ff","#ffb347" ] },
+    { title: 'pressure', unit: 'hPa', keys: ['indoor_press', 'outdoor_press'], colors: ["#acd9ff","#ffb347" ] },
+    { title: 'rain', unit: 'mm', keys: ['rain'], colors: ["#acd9ff","#ffb347" ]},
+    { tilte: 'windspeed', unit: 'km/h', keys: ['wind_speed'], colors: ["#acd9ff","#ffb347" ] }
   ];
 
   useEffect(() => {

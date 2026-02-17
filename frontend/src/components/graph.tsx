@@ -20,15 +20,22 @@ export default function Graph({ data, metric }: { data: WeatherHistory | null, m
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title">temperature progression (24h)</h3>
+      <h3 className="chart-title">{metric.title} in {metric.unit}</h3>
       <div style={{ width: '100%', height: 300 }}>
         <ResponsiveContainer>
           <AreaChart data={formattedData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
             <defs>
-              <linearGradient id="colorTemp" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#acd9ff" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#acd9ff" stopOpacity={0} />
-              </linearGradient>
+              {metric.colors.map((color: string, i: number) => {
+                return (<linearGradient
+                key={`gradient-${i}`}
+                id={`color-${i}`}
+                x1="0" y1="0" x2="0" y2="1"
+                >
+                  <stop offset="5%" stopColor={color} stopOpacity={0.3} />
+                  <stop offset="95%" stopColor={color} stopOpacity={0} />
+                </linearGradient>
+                )
+              })}
             </defs>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
             <XAxis
@@ -44,14 +51,21 @@ export default function Graph({ data, metric }: { data: WeatherHistory | null, m
             <Tooltip
               contentStyle={{ backgroundColor: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '10px', color: 'white' }}
               itemStyle={{ color: '#acd9ff' }}
+              formatter={(value: number | undefined) => {
+                if (value === undefined) return `N/A`;
+                return `${value} ${metric.unit}`;
+              }}
             />
-            {metric.keys.map((keyName: string) => (
+            {metric.keys.map((keyName: string, i: number) => (
               <Area
                 key={keyName}
                 type="monotone"
                 dataKey={keyName}
-                stroke="#acd9ff"
-                fill="url(#colorTemp)"
+                stroke={metric.colors[i]}
+                fill={`url(#color-${i})`}
+                connectNulls={true}
+                strokeWidth={3}
+                fillOpacity={1}
               />
             ))}
           </AreaChart>
