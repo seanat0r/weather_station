@@ -9,6 +9,7 @@ export interface GraphData {
 
 export const icons = {
   sun: "☀️",
+  sundCloudy: "🌤️",
   rain: "🌧️",
   water: "💧",
   cloudy: "☁️",

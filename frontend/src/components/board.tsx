@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import Graph from "./graph"
-import { type CurrentWeather, type WeatherHistory, getWeatherHistory } from './../services/weatherService'
+import { type CurrentWeather, type WeatherHistory, type Forecast, getWeatherHistory, getForecast } from './../services/weatherService'
 import { icons, METRICS, TIMERANGE } from "./../config/config"
 
 function Tile() {
@@ -38,7 +38,6 @@ function Tile() {
           ))
         ))}
         <MetricBox />
-        <MetricBox />
       </div>
     </>
   )
@@ -46,11 +45,40 @@ function Tile() {
 }
 
 function MetricBox() {
+  const [forecastPressure, setForecastPressure] = useState<Forecast | null>(null);
+  const forecast = calculateForecast();
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const data = await getForecast();
+      setForecastPressure(data);
+    }
+    fetchWeather();
+  }, [])
+
+  function calculateForecast() {
+    if (!forecastPressure || forecastPressure.length < 2) return {
+      text: "Loading",
+      icon: icons.loading,
+    };
+    const nowPressure: number = forecastPressure[0].outdoor_press;
+    const passtPressure: number = forecastPressure[1].outdoor_press;
+
+    const delta: number = nowPressure - passtPressure;
+
+    if (delta > 1.5) return { text: "Sunny", icon: icons.sun };
+    if (delta > 0.5) return { text: "weather improvement", icon: icons.sundCloudy };
+    if (delta < -1.5) return { text: "Storm is comming", icon: icons.storm };
+    if (delta < -0.5) return { text: "worsening", icon: icons.rain };
+  
+    return { text: "stable", icon: icons.cloudy };
+  }
+
   return (
     <>
       <h3>Forecast</h3>
-      <span>⛈️</span>
-      <p>It's likely to comes a storm!</p>
+      <span>{forecast?.icon}</span>
+      <p>{forecast?.text}</p>
     </>
   )
 }
