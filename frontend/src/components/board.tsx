@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import Graph from "./graph"
-import { type CurrentWeather, type WeatherHistory, type Forecast, getWeatherHistory, getForecast } from './../services/weatherService'
+import { type WeatherHistory, type Forecast, getWeatherHistory, getForecast } from './../services/weatherService'
 import { icons, METRICS, TIMERANGE } from "./../config/config"
 
 function Tile() {
@@ -26,6 +26,9 @@ function Tile() {
 
   return (
     <>
+      <div className="metric-box">
+        <MetricBox />
+      </div>
       <div className="tile">
         {METRICS.map((metric: any) => (
           task.map((item: any, index: number) => (
@@ -37,7 +40,6 @@ function Tile() {
              />
           ))
         ))}
-        <MetricBox />
       </div>
     </>
   )

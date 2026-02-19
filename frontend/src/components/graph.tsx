@@ -40,6 +40,8 @@ export default function Graph({ data, metric, timerange }: { data: WeatherHistor
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
             <XAxis
               dataKey="time"
+              interval="preserveStartEnd"
+              minTickGap={30}
               axisLine={true}
               tickLine={true}
               tickFormatter={(timeStr) => {
@@ -81,6 +83,7 @@ export default function Graph({ data, metric, timerange }: { data: WeatherHistor
                 connectNulls={true}
                 strokeWidth={3}
                 fillOpacity={1}
+                isAnimationActive={false}
               />
             ))}
           </AreaChart>
