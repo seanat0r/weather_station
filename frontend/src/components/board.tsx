@@ -75,11 +75,18 @@ function MetricBox() {
   }
 
   return (
-    <>
-      <h3>Forecast</h3>
-      <span>{forecast?.icon}</span>
-      <p>{forecast?.text}</p>
-    </>
+    <div className="forecast-card">
+      <h3 className="chart-title">Forecast</h3>
+      <div className="forecast-content">
+        <div className="forecast-icon-wrapper">
+        {forecast?.icon}
+      </div>
+      <div className="forecast-info">
+        <p className="forecast-text">{forecast?.text}</p>
+      <span className="forecast-subtext">3h Tendenz</span>
+    </div>
+  </div>
+</div>
   )
 }
 

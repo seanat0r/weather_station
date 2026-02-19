@@ -45,9 +45,17 @@ export default function Graph({ data, metric, timerange }: { data: WeatherHistor
               tickFormatter={(timeStr) => {
                 if (!timeStr) return ""
                 const date = new Date(timeStr);
-                return isNaN(date.getTime())
-                  ? ""
-                  : date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                if (timerange === '24h') {
+                  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+                if (timerange === '1 Week') {
+                  return date.toLocaleDateString([], { day: '2-digit', month: "2-digit" })
+                }
+                if (timerange === '1 Month') {
+                  return date.toLocaleDateString([], { day: '2-digit', month: '2-digit' })
+                }
+                return "";
               }}
               tick={{ fill: 'white', opacity: 0.5, fontSize: 12 }}
             />
