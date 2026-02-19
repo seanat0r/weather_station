@@ -1,4 +1,7 @@
 {
     "python.defaultInterpreterPath": "./.venv/bin/python",
-    "python.analysis.extraPaths": ["./lib"]
+    "python.analysis.extraPaths": [
+        "./lib"
+    ],
+    "python-envs.pythonProjects": []
 }

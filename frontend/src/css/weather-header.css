@@ -1,5 +1,24 @@
+@media (max-width: 768px) {
+    .weather-header {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stats-grid {
+        text-align: center;
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
 .weather-header {
-    /* Milchglas-Effekt */
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -20,14 +39,27 @@
 }
 
 .temp-value {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 800;
     display: block;
 }
 
 .status-icon {
-    font-size: 5rem;
+    font-size: clamp(3.5rem, 10vw, 5rem);
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .stat-group {
+        min-width: 0;
+        padding: 10px;
+    }
 }
 
 .stats-grid {
@@ -72,8 +104,8 @@
     align-items: center;
 }
 
-.temp-up { color: #ffabac; }   /* Ganz sanftes Rot für Max */
-.temp-down { color: #acd9ff; } /* Ganz sanftes Blau für Min */
+.temp-up { color: #ffabac; }   
+.temp-down { color: #acd9ff; } 
 
 .temp-separator {
     opacity: 0.2;
