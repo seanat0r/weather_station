@@ -37,7 +37,7 @@ Codeflow:
 
 ```mermaid
 [Sensors]           [Processing & Storage]          [Access]
-Arduino (RF) --+       Open-Meteo API       +-- Frontend (in Working)
+Arduino (RF) --+       Open-Meteo API       +-- Frontend
                |                    |       |
                |                    |       |
             WeMosD1 (mDNS/IP) -> Python Service --+-- REST API (Flask)
