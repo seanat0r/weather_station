@@ -1,0 +1,16 @@
+{
+  "name": "My Weatherstation",
+  "short_name": "Weather",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0288d1",
+  "icons": [
+    {
+      "src": "/weather-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

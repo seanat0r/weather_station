@@ -1,0 +1,27 @@
+/home/admin-server/projects/weather_station/start.sh: line 26: npm: command not found
+/home/admin-server/projects/weather_station/start.sh: line 28: npx: command not found
+/home/admin-server/projects/weather_station/start.sh: line 26: npm: command not found
+/home/admin-server/projects/weather_station/start.sh: line 28: npx: command not found
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error in conditional expression: unexpected token `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error near `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: `if [[ ! -d "dist"]]; then'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error in conditional expression: unexpected token `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error near `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: `if [[ ! -d "dist"]]; then'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error in conditional expression: unexpected token `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error near `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: `if [[ ! -d "dist"]]; then'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error in conditional expression: unexpected token `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error near `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: `if [[ ! -d "dist"]]; then'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error in conditional expression: unexpected token `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error near `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: `if [[ ! -d "dist"]]; then'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error in conditional expression: unexpected token `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: syntax error near `;'
+/home/admin-server/projects/weather_station/start.sh: line 27: `if [[ ! -d "dist"]]; then'
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

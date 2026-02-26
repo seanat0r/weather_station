@@ -1,14 +1,16 @@
-# Weather Station Project
+# Weather Station Project 1/3
+
+This is the backend and hardware portion of the Weather Station Project (Part 1/3). It handles data collection from sensors, external API integration, and database management.
 
 ## Table of Contents
 
-1. Architecture
-2. Technology
-3. Database Design
-4. API Concept
-5. Problems & Solutions
-6. What I Learned
-7. Next Steps
+1. [Architecture](#1-architectur)
+2. [Technology](#2-technology)
+3. [Database Design](#3-database-design)
+4. [API Concept](#4-api-conzept)
+5. [Problems & Solutions](#5-problems-and-solutions)
+6. [What I Learned](#6-what-i-learned)
+7. [Next Steps](#7-next-steps)
 
 ## 1. Architectur
 
