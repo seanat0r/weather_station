@@ -27,7 +27,7 @@ graph LR
     H[Hardware/Sensors] --> B[Python Backend]
     B --> D[(MariaDB)]
     B --> F[React Frontend]
-    F --> P[Mobile/Pixel 10 Pro]
+    F --> P[User]
 ```
 
 ## Global Technology Stack
