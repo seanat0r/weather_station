@@ -52,6 +52,55 @@ To get the entire system running, follow the setup guides in each sub-directory:
 
 4. **Automation:** Use the provided start.sh script to run the backend and frontend concurrently as a systemd service.
 
+### Crucial Configuration Before Startup
+
+#### Backend Setup
+
+Navigate to `./backend/` and create a `.env` file with the following content:
+
+```env
+DB_HOST=localhost
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_DATABASE=your_db
+WEMOS_URL=http://WeMosD1_weatherstation.local/data.json
+IP=192.168.1.1
+INTERVAL=5
+```
+
+* **DB_XX:** Give your DB access in accordingly
+
+* **WEMOS_URL:** The mDNS address of the gateway.
+* **IP:** The static IP of your WeMos gateway.
+
+  * **Switching between IP/URL:** By default, the system uses the `WEMOS_IP`. To use the mDNS URL instead, modify the `WEMOS_IP_URL` variable in `./backend/config/config.py`.
+
+* **INTERVAL:** How many minutes the delay is.
+
+* **Outdoor API:** To change your weather location, update the coordinates in the `url` variable within `./backend/lib/weather_api.py`. It currently points to a specific village (Lat: 47.3975, Long: 8.008).
+
+  * **Note on Security:** I opted not to put the Open-Meteo API link in the `.env` as it is a free, open service. However, for private keys or paid services, always use environment variables to keep them hidden from GitHub!
+
+#### Frontend Setup
+
+Navigate to `./frontend/` and create a `.env` file:
+
+```env
+VITE_WEATHER_API=http://YOUR_SERVER_IP/api/weather
+```
+
+* **VITE_WEATHER_API:** Replace `YOUR_SERVER_IP` with your actual server IP (e.g., your Tailscale IP or local network IP) to ensure the dashboard can reach the Flask API.
+
+#### Hardware Setup
+
+To change the network hostname of your gateway, look for this line in the WeMos C++ code:
+
+```cpp
+WiFi.hostname("WeMosD1_weatherstation"); // Change your network name here
+```
+
+*It is highly recommended to assign a static IP to your WeMos in your router settings and match it in the Backend .env file!*
+
 ## Key Features
 
 * **Data Integrity:** Implements a weighting algorithm on the gateway to ensure sensor accuracy.
