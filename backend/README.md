@@ -46,7 +46,7 @@ graph LR
     subgraph Processing_Storage
         W -- mDNS/IP --> P[Python Service]
         O[Open-Meteo API] --> P
-        P --> DB[(MariaDB)]
+        P <--> DB[(MariaDB)]
     end
 
     subgraph Access
