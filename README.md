@@ -25,7 +25,7 @@ The data flows from the physical sensors to your digital dashboard:
 ```mermaid
 graph LR
     H[Hardware/Sensors] --> B[Python Backend]
-    B --> D[(MariaDB)]
+    B <--> D[(MariaDB)]
     B --> F[React Frontend]
     F --> P[User]
 ```
