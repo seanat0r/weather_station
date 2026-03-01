@@ -38,13 +38,21 @@ Data is stored in a MariaDB instance. All sensitive credentials (passwords, API 
 Codeflow:
 
 ```mermaid
-[Sensors]           [Processing & Storage]          [Access]
-Arduino (RF) --+       Open-Meteo API       +-- Frontend
-               |                    |       |
-               |                    |       |
-            WeMosD1 (mDNS/IP) -> Python Service --+-- REST API (Flask)
-                                     |
-                                 MariaDB
+graph LR
+    subgraph Sensors
+        A[Arduino Nano] -- RF --> W[WeMos D1 Mini]
+    end
+
+    subgraph Processing_Storage
+        W -- mDNS/IP --> P[Python Service]
+        O[Open-Meteo API] --> P
+        P --> DB[(MariaDB)]
+    end
+
+    subgraph Access
+        P --> API[REST API Flask]
+        API --> F[Frontend]
+    end
 ```
 
 ## 2. Technology
